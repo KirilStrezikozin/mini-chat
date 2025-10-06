@@ -1,0 +1,15 @@
+[{package,tsconfig}.json]
+indent_size=2
+indent_style=space
+
+[.prettierrc]
+indent_size=2
+indent_style=space
+
+[*.nix]
+indent_size=2
+indent_style=space
+
+[*.{ts,tsx,js,jsx,mjs,html}]
+indent_size=2
+indent_style=space
