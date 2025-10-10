@@ -22,15 +22,15 @@ export default function Home() {
         className="max-h-screen max-w-full border md:min-w-[450px]"
       >
         <ResizablePanel
-          className="border-none"
-          minSize={8}
+          className="min-w-75 border-none"
+          minSize={16}
           defaultSize={20}
           maxSize={50}
         >
           <ChatSidebar />
         </ResizablePanel>
         <ResizableHandle className="invisible" />
-        <ResizablePanel>
+        <ResizablePanel defaultSize={80}>
           <ChatContent />
         </ResizablePanel>
       </ResizablePanelGroup>
