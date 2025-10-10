@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
+import { AccountSettingsDialog } from "./account-settings-dialog";
+import { ChatSearchDialog } from "./chat-search-dialog";
 import { PaneItem } from "./pane";
+import Scrollable from "./scrollable";
 import { Button } from "./ui/button";
 import {
   ItemActions,
@@ -19,48 +22,43 @@ export function ChatSidebar({
   return (
     <div
       className={cn(
-        "flex h-full flex-col justify-between justify-items-stretch",
+        "flex h-full w-full flex-col justify-between justify-items-stretch",
         className,
       )}
       {...props}
     >
-      <PaneItem justify="start" hint="search">
-        <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
-        </ItemActions>
+      <PaneItem
+        justify="start"
+        hint="search"
+        itemClassName="grid justify-items-stretch"
+        className="h-18 md:h-24"
+      >
+        <ChatSearchDialog />
       </PaneItem>
       <PaneItem justify="stretch" hint="chats">
         <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
+          <Scrollable className="px-2">
+            <div className="flex flex-col space-y-2 py-4">
+              {[...Array(50)].map((_, i) => (
+                <Button
+                  key={i}
+                  variant="ghost"
+                  className="flex h-full w-full flex-row justify-start overflow-hidden border py-6"
+                >
+                  User Chat {i + 1}
+                </Button>
+              ))}
+            </div>
+          </Scrollable>
         </ItemContent>
-        <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
-        </ItemActions>
       </PaneItem>
-      <PaneItem justify="end" hint="user">
+      <PaneItem justify="end" hint="user" className="h-18 md:h-24">
         <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
+          <ItemTitle>My User</ItemTitle>
+          <ItemDescription>@myusername</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
+          <AccountSettingsDialog />
         </ItemActions>
       </PaneItem>
     </div>

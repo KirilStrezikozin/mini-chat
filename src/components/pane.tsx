@@ -1,16 +1,10 @@
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import { ChatContent } from "./chat-content";
-import { ChatSidebar } from "./chat-sidebar";
 import { Item } from "./ui/item";
 
 interface PaneItemProps {
   className?: string;
+  itemClassName?: string;
   children: React.ReactNode;
   justify: "start" | "stretch" | "end";
   hint?: string;
@@ -18,6 +12,7 @@ interface PaneItemProps {
 
 export function PaneItem({
   className,
+  itemClassName,
   children,
   justify,
   hint,
@@ -35,41 +30,20 @@ export function PaneItem({
   return (
     <div className={cn(itemStyles({ justify }), className)}>
       {hint && (
-        <span className="text-muted-foreground group-hover:text-foreground bg-background absolute top-0 left-3 -translate-y-1/2 p-1 text-sm font-medium">
+        <span className="text-muted-foreground group-hover:text-foreground bg-background absolute top-0 left-3 z-100 -translate-y-1/2 pr-1 pl-1 text-sm font-medium">
           {hint}
         </span>
       )}
       <Item
         variant="outline"
         className={cn(
-          "w-full overflow-hidden rounded-none",
+          "w-full overflow-hidden",
           justify === "stretch" ? "h-full" : "h-18 md:h-24",
+          itemClassName,
         )}
       >
         {children}
       </Item>
     </div>
-  );
-}
-
-export function ResizableVerticalSplit() {
-  return (
-    <ResizablePanelGroup
-      direction="horizontal"
-      className="max-h-screen max-w-full border md:min-w-[450px]"
-    >
-      <ResizablePanel
-        className="border-none"
-        minSize={8}
-        defaultSize={20}
-        maxSize={50}
-      >
-        <ChatSidebar />
-      </ResizablePanel>
-      <ResizableHandle className="invisible" />
-      <ResizablePanel>
-        <ChatContent />
-      </ResizablePanel>
-    </ResizablePanelGroup>
   );
 }

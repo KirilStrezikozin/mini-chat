@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
+import { ChatProfileDialog } from "./chat-profile-dialog";
+import MessageInput from "./message-input";
 import { PaneItem } from "./pane";
-import { Button } from "./ui/button";
 import {
   ItemActions,
   ItemContent,
@@ -21,16 +22,12 @@ export function ChatContent({
       {...props}
     >
       <PaneItem justify="start" hint="chat">
-        <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
+        <ItemContent className="flex flex-row items-center space-x-4">
+          <ItemTitle className="text-lg">User Name</ItemTitle>
+          <ItemDescription className="text-md">@username</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
+          <ChatProfileDialog />
         </ItemActions>
       </PaneItem>
       <PaneItem justify="stretch">
@@ -40,24 +37,15 @@ export function ChatContent({
             Outlined style with clear borders and transparent background.
           </ItemDescription>
         </ItemContent>
-        <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
-        </ItemActions>
+        <ItemActions></ItemActions>
       </PaneItem>
-      <PaneItem justify="end" hint="input">
-        <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
-        </ItemActions>
+      <PaneItem
+        justify="end"
+        hint="input"
+        className="align-start flex max-h-120 flex-col"
+        itemClassName="h-max md:h-max min-h-24"
+      >
+        <MessageInput />
       </PaneItem>
     </div>
   );
